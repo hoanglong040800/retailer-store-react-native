@@ -34,7 +34,7 @@
     ],
     "react/prop-types": 0,
     "import/no-unresolved": 0,
-    "import/extensions": ["error", "never"],
+    "import/extensions": 0,
     "no-use-before-define": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"]

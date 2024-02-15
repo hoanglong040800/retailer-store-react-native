@@ -1,11 +1,12 @@
-import { View } from "react-native"
+import { TodoList } from 'modules';
+import { View } from 'react-native';
 
 const TodoScreen = () => {
   return (
     <View>
-      Todo app
+      <TodoList />
     </View>
-  )
-}
+  );
+};
 
-export default TodoScreen
+export default TodoScreen;
