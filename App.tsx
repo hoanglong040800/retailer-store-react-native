@@ -3,8 +3,10 @@ import { AppNavigator } from 'screens';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    
   );
 }

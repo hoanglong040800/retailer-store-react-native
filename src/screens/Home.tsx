@@ -1,9 +1,7 @@
-import { Text } from "react-native"
+import { Text } from 'react-native';
 
 const HomeScreen = () => {
-  return (
-    <Text>Hello Long</Text>
-  )
-}
+  return <Text>Hello Long</Text>;
+};
 
-export default HomeScreen
+export default HomeScreen;

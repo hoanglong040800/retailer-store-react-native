@@ -3,22 +3,13 @@ import { HomeScreen, TodoScreen } from '.';
 
 const AppNavigator = () => {
   const Stack = createNativeStackNavigator();
-  const { Navigator, Screen } = Stack
-
+  const { Navigator, Screen } = Stack;
 
   return (
     <Navigator>
-      <Screen
-        name="Todo"
-        component={TodoScreen}
-        options={{ title: 'Todo' }}
-      />
+      <Screen name="Todo" component={TodoScreen} options={{ title: 'Todo' }} />
 
-      <Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ title: 'Home' }}
-      />
+      <Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
     </Navigator>
   );
 };
