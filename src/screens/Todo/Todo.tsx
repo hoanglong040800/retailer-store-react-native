@@ -1,15 +1,15 @@
 import { DeModal } from 'components';
-import { TodoList } from 'modules';
+import { CreateTodoContent, TodoList } from 'modules';
 import { ITodo } from 'modules/todo/todo.interface';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { FAB, Text } from 'react-native-paper';
+import { FAB } from 'react-native-paper';
 
 const TodoScreen = () => {
   const todoList: ITodo[] = [
     {
       id: 1,
-      title: 'read 2',
+      title: 'read',
       description: 'read book',
     },
     {
@@ -45,7 +45,7 @@ const TodoScreen = () => {
         onClose={onCloseCreateTodoModal}
         onConfirm={onConfirmCreateTodoModal}
       >
-        <Text>Hello world</Text>
+        <CreateTodoContent/>
       </DeModal>
     </>
   );
