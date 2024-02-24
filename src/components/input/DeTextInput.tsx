@@ -13,7 +13,14 @@ const DeTextInput = ({ control, label, name }: Props) => {
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, value } }) => <TextInput label={label} onChangeText={onChange} value={value} />}
+      render={({ field: { onChange, value } }) => (
+        <TextInput
+          label={label}
+          onChangeText={onChange}
+          // add empty text to avoid changing uncontrolled -> controlled which caused by value changing undefined -> define
+          value={value || ''}
+        />
+      )}
     />
   );
 };

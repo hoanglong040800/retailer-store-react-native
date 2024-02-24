@@ -9,7 +9,7 @@ const TodoScreen = () => {
   const todoList: ITodo[] = [
     {
       id: 1,
-      title: 'read',
+      title: 'read 2',
       description: 'read book',
     },
     {
@@ -45,7 +45,7 @@ const TodoScreen = () => {
         onClose={onCloseCreateTodoModal}
         onConfirm={onConfirmCreateTodoModal}
       >
-        <CreateTodoContent/>
+        <CreateTodoContent />
       </DeModal>
     </>
   );
