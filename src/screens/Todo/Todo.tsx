@@ -29,8 +29,6 @@ const TodoScreen = () => {
     setIsOpenCreateTodoModal(false);
   };
 
-  const onConfirmCreateTodoModal = () => {};
-
   return (
     <>
       <View>
@@ -39,13 +37,8 @@ const TodoScreen = () => {
 
       <FAB size="medium" icon="plus" style={styles.fab} onPress={onClickCreateTodo} />
 
-      <DeModal
-        title="Create Todo"
-        isOpen={isOpenCreateTodoModal}
-        onClose={onCloseCreateTodoModal}
-        onConfirm={onConfirmCreateTodoModal}
-      >
-        <CreateTodoContent />
+      <DeModal isOpen={isOpenCreateTodoModal} onClose={onCloseCreateTodoModal} isHideHeader>
+        <CreateTodoContent onClose={onCloseCreateTodoModal} />
       </DeModal>
     </>
   );

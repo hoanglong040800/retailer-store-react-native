@@ -1,17 +1,18 @@
-import { DeTextInput } from 'components';
+import { object } from 'yup';
+import { DeAppBar, DeTextInput } from 'components';
 import { useForm } from 'react-hook-form';
-import { Button } from 'react-native-paper';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { CreateTodoForm } from './todo.interface';
+import { createTodoSchema } from './todo.schema';
 
-const schema = yup.object().shape({
-  title: yup.string().required().max(50),
-  description: yup.string().max(200),
-});
+type Props = {
+  onClose: () => void;
+};
 
-const CreateTodoContent = () => {
-  const { control, handleSubmit } = useForm<CreateTodoForm>({ resolver: yupResolver<CreateTodoForm>(schema) });
+const resolvedSchema = yupResolver(object(createTodoSchema));
+
+const CreateTodoContent = ({ onClose }: Props) => {
+  const { control, handleSubmit } = useForm<CreateTodoForm>({ resolver: resolvedSchema });
 
   const onValidSubmit = (formData: CreateTodoForm) => {
     console.log(formData);
@@ -22,13 +23,18 @@ const CreateTodoContent = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onValidSubmit, onInvalidSubmit)}>
+    <>
+      <DeAppBar
+        title="Create Todo"
+        primaryText="Save"
+        onPressPrimary={handleSubmit(onValidSubmit, onInvalidSubmit)}
+        onPressSecondary={onClose}
+      />
+
       <DeTextInput control={control} name="title" label="Title" />
 
       <DeTextInput control={control} name="description" label="Description" />
-
-      <Button onPress={handleSubmit(onValidSubmit, onInvalidSubmit)}>Submit</Button>
-    </form>
+    </>
   );
 };
 

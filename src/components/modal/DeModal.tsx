@@ -5,14 +5,17 @@ type Props = {
   isOpen: boolean;
   title: string;
   children: JSX.Element;
+  isHideHeader: boolean;
   onConfirm: () => void;
   onClose: () => void;
 };
 
-const DeModal = ({ isOpen, title, children, onConfirm, onClose }: Props) => {
+const DeModal = ({ isOpen, title = '', children, isHideHeader = false, onConfirm = () => null, onClose }: Props) => {
   return (
     <Modal visible={isOpen} onDismiss={onClose} presentationStyle="overFullScreen" animationType="slide">
-      <DeAppBar title={title} primaryText="Save" onPressPrimary={onConfirm} onPressSecondary={onClose} />
+      {!isHideHeader && (
+        <DeAppBar title={title} primaryText="Save" onPressPrimary={onConfirm} onPressSecondary={onClose} />
+      )}
 
       {children}
     </Modal>
