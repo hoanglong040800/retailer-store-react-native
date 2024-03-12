@@ -1,21 +1,16 @@
-import { useState } from 'react';
 import { Snackbar as PaperSnackbar } from 'react-native-paper';
 
 type Props = {
+  visible: boolean;
   title: string;
+  onDismiss: () => void;
 };
 
-const Snackbar = ({ title }: Props) => {
+const Snackbar = ({ visible, title, onDismiss }: Props) => {
   const DURATION = 5000;
 
-  const [visible, setVisible] = useState(false);
-
-  const handleDismiss = () => {
-    setVisible(false);
-  };
-
   return (
-    <PaperSnackbar visible={visible} onDismiss={handleDismiss} duration={DURATION}>
+    <PaperSnackbar visible={visible} onDismiss={onDismiss} duration={DURATION}>
       {title}
     </PaperSnackbar>
   );
