@@ -1,37 +1,16 @@
-import { object } from 'yup';
-import { DeAppBar, DeTextInput, useSnackbar } from 'components';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { CreateTodoForm } from './todo.interface';
-import { createTodoSchema } from './todo.schema';
+import { DeAppBar, DeTextInput } from 'components';
+import { useCreateTodo } from './useCreateTodo';
 
 type Props = {
   onClose: () => void;
 };
 
-const resolvedSchema = yupResolver(object(createTodoSchema));
-
 const CreateTodoContent = ({ onClose }: Props) => {
-  const { openSnackbar } = useSnackbar();
-  const { control, handleSubmit } = useForm<CreateTodoForm>({ resolver: resolvedSchema });
-
-  const onValidSubmit = (formData: CreateTodoForm) => {
-    console.log(formData);
-    openSnackbar('success', 'Create todo successfully');
-  };
-
-  const onInvalidSubmit = () => {
-    openSnackbar('error', 'Create todo fail');
-  };
+  const { control, onClickSubmit } = useCreateTodo();
 
   return (
     <>
-      <DeAppBar
-        title="Create Todo"
-        primaryText="Save"
-        onPressPrimary={handleSubmit(onValidSubmit, onInvalidSubmit)}
-        onPressSecondary={onClose}
-      />
+      <DeAppBar title="Create Todo" primaryText="Save" onPressPrimary={onClickSubmit} onPressSecondary={onClose} />
 
       <DeTextInput control={control} name="title" label="Title" />
 

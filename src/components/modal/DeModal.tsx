@@ -3,14 +3,14 @@ import { Modal } from 'react-native';
 
 type Props = {
   isOpen: boolean;
-  title: string;
+  title?: string;
   children: JSX.Element;
-  isHideHeader: boolean;
-  onConfirm: () => void;
+  isHideHeader?: boolean;
+  onConfirm?: () => void;
   onClose: () => void;
 };
 
-const DeModal = ({ isOpen, title = '', children, isHideHeader = false, onConfirm = () => null, onClose }: Props) => {
+const DeModal = ({ isOpen, title, children, isHideHeader, onConfirm, onClose }: Props) => {
   return (
     <Modal visible={isOpen} onDismiss={onClose} presentationStyle="overFullScreen" animationType="slide">
       {!isHideHeader && (
