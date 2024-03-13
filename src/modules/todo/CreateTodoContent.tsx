@@ -1,6 +1,5 @@
-import { useContext } from 'react';
 import { object } from 'yup';
-import { DeAppBar, DeTextInput, SnackbarDpCxt } from 'components';
+import { DeAppBar, DeTextInput, useSnackbar } from 'components';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CreateTodoForm } from './todo.interface';
@@ -13,17 +12,16 @@ type Props = {
 const resolvedSchema = yupResolver(object(createTodoSchema));
 
 const CreateTodoContent = ({ onClose }: Props) => {
-  const snackDp = useContext(SnackbarDpCxt);
-
+  const { openSnackbar } = useSnackbar();
   const { control, handleSubmit } = useForm<CreateTodoForm>({ resolver: resolvedSchema });
 
   const onValidSubmit = (formData: CreateTodoForm) => {
-    // TODO long.t call API
     console.log(formData);
+    openSnackbar('success', 'Create todo successfully');
   };
 
   const onInvalidSubmit = () => {
-    snackDp({ type: 'open', state: { type: 'error', title: 'Create Todo content fail' } });
+    openSnackbar('error', 'Create todo fail');
   };
 
   return (
