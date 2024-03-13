@@ -1,10 +1,8 @@
 import { useContext } from 'react';
 import { SnackbarType } from 'types';
-import { SnackbarCxt } from './SnackbarContext';
 import { SnackbarDpCxt } from './SnackbarDispatchContext';
 
 export const useSnackbar = () => {
-  const state = useContext(SnackbarCxt);
   const dispatch = useContext(SnackbarDpCxt);
 
   const openSnackbar = (type: SnackbarType, title: string) => {
@@ -15,5 +13,5 @@ export const useSnackbar = () => {
     dispatch({ type: 'close' });
   };
 
-  return { state, openSnackbar, closeSnackbar };
+  return { openSnackbar, closeSnackbar };
 };
