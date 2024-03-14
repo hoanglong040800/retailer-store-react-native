@@ -5,15 +5,24 @@ import { useSnackbar } from 'components';
 import { CreateTodoForm } from './todo.interface';
 import { createTodoSchema } from './todo.schema';
 
+export type UseCreateTodoProps = {
+  onCreateTodo: (formData: CreateTodoForm) => void;
+};
+
 const resolvedSchema = yupResolver(object(createTodoSchema));
 
-export const useCreateTodo = () => {
+export const useCreateTodo = ({ onCreateTodo }: UseCreateTodoProps) => {
   const { openSnackbar } = useSnackbar();
   const { control, handleSubmit } = useForm<CreateTodoForm>({ resolver: resolvedSchema });
 
   const onValidSubmit = (formData: CreateTodoForm) => {
-    console.log(formData);
-    openSnackbar('success', 'Create todo successfully');
+    try {
+      onCreateTodo(formData);
+
+      openSnackbar('success', 'Create todo successfully');
+    } catch (err) {
+      onInvalidSubmit();
+    }
   };
 
   const onInvalidSubmit = () => {

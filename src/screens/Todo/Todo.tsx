@@ -1,12 +1,12 @@
 import { DeModal } from 'components';
 import { CreateTodoContent, TodoList } from 'modules';
-import { ITodo } from 'modules/todo/todo.interface';
+import { CreateTodoForm, ITodo } from 'modules/todo/todo.interface';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FAB } from 'react-native-paper';
 
 const TodoScreen = () => {
-  const todoList: ITodo[] = [
+  const initialTodoList: ITodo[] = [
     {
       id: 1,
       title: 'read 2',
@@ -19,6 +19,7 @@ const TodoScreen = () => {
     },
   ];
 
+  const [todoList, setTodoList] = useState(initialTodoList);
   const [isOpenCreateTodoModal, setIsOpenCreateTodoModal] = useState(false);
 
   const onClickCreateTodo = () => {
@@ -27,6 +28,18 @@ const TodoScreen = () => {
 
   const onCloseCreateTodoModal = () => {
     setIsOpenCreateTodoModal(false);
+  };
+
+  const createTodo = (newTodoForm: CreateTodoForm) => {
+    const newTodo: ITodo = {
+      id: initialTodoList.length + 1,
+      title: newTodoForm.title,
+      description: newTodoForm.description,
+    };
+
+    setTodoList([...todoList, newTodo]);
+
+    onCloseCreateTodoModal();
   };
 
   return (
@@ -38,7 +51,7 @@ const TodoScreen = () => {
       <FAB size="medium" icon="plus" style={styles.fab} onPress={onClickCreateTodo} />
 
       <DeModal isOpen={isOpenCreateTodoModal} onClose={onCloseCreateTodoModal} isHideHeader>
-        <CreateTodoContent onClose={onCloseCreateTodoModal} />
+        <CreateTodoContent onCreateTodo={createTodo} onClose={onCloseCreateTodoModal} />
       </DeModal>
     </>
   );

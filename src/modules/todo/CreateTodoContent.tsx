@@ -1,12 +1,12 @@
 import { DeAppBar, DeTextInput } from 'components';
-import { useCreateTodo } from './useCreateTodo';
+import { UseCreateTodoProps, useCreateTodo } from './useCreateTodo';
 
-type Props = {
+type Props = UseCreateTodoProps & {
   onClose: () => void;
 };
 
-const CreateTodoContent = ({ onClose }: Props) => {
-  const { control, onClickSubmit } = useCreateTodo();
+const CreateTodoContent = ({ onCreateTodo, onClose }: Props) => {
+  const { control, onClickSubmit } = useCreateTodo({ onCreateTodo });
 
   return (
     <>
