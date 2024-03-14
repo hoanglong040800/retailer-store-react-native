@@ -6,15 +6,15 @@ type Props = UseCreateTodoProps & {
 };
 
 const CreateTodoContent = ({ onCreateTodo, onClose }: Props) => {
-  const { control, onClickSubmit } = useCreateTodo({ onCreateTodo });
+  const { control, errors, onClickSubmit } = useCreateTodo({ onCreateTodo });
 
   return (
     <>
       <DeAppBar title="Create Todo" primaryText="Save" onPressPrimary={onClickSubmit} onPressSecondary={onClose} />
 
-      <DeTextInput control={control} name="title" label="Title" />
+      <DeTextInput control={control} errors={errors} name="title" label="Title" />
 
-      <DeTextInput control={control} name="description" label="Description" />
+      <DeTextInput control={control} errors={errors} name="description" label="Description" />
     </>
   );
 };

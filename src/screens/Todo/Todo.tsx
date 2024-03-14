@@ -1,26 +1,28 @@
-import { DeModal } from 'components';
+import { DeModal, useSnackbar } from 'components';
 import { CreateTodoContent, TodoList } from 'modules';
 import { CreateTodoForm, ITodo } from 'modules/todo/todo.interface';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FAB } from 'react-native-paper';
 
-const TodoScreen = () => {
-  const initialTodoList: ITodo[] = [
-    {
-      id: 1,
-      title: 'read 2',
-      description: 'read book',
-    },
-    {
-      id: 2,
-      title: 'eat',
-      description: 'eat food',
-    },
-  ];
+const initialTodoList: ITodo[] = [
+  {
+    id: 1,
+    title: 'read 2',
+    description: 'read book',
+  },
+  {
+    id: 2,
+    title: 'eat',
+    description: 'eat food',
+  },
+];
 
+const TodoScreen = () => {
   const [todoList, setTodoList] = useState(initialTodoList);
   const [isOpenCreateTodoModal, setIsOpenCreateTodoModal] = useState(false);
+
+  const { openSnackbar } = useSnackbar();
 
   const onClickCreateTodo = () => {
     setIsOpenCreateTodoModal(true);
@@ -31,15 +33,19 @@ const TodoScreen = () => {
   };
 
   const createTodo = (newTodoForm: CreateTodoForm) => {
-    const newTodo: ITodo = {
-      id: initialTodoList.length + 1,
-      title: newTodoForm.title,
-      description: newTodoForm.description,
-    };
+    try {
+      const newTodo: ITodo = {
+        id: initialTodoList.length + 1,
+        title: newTodoForm.title,
+        description: newTodoForm.description,
+      };
 
-    setTodoList([...todoList, newTodo]);
-
-    onCloseCreateTodoModal();
+      setTodoList([...todoList, newTodo]);
+      openSnackbar('success', 'Create todo successfully');
+      onCloseCreateTodoModal();
+    } catch (error) {
+      openSnackbar('error', 'Create todo fail');
+    }
   };
 
   return (
