@@ -1,35 +1,27 @@
-import { useState } from 'react';
 import { View } from 'react-native';
 import { DeModal } from 'components';
-import { ITodo } from './todo.interface';
+import { EditTodoForm, ITodo } from './todo.interface';
 import TodoItem from './TodoItem';
 import EditTodoContext from './EditTodoContent';
 
 type Props = {
   list: ITodo[];
+  editingItem: ITodo;
+  isOpenEditModal: boolean;
+  onOpenEditModal: (item: ITodo) => void;
+  onCloseEditModal: () => void;
+  editTodo: (item: EditTodoForm) => void;
 };
 
-const TodoList = ({ list }: Props) => {
-  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
-  const [editingItem, setEditingItem] = useState<ITodo>(null);
-
-  const handleOpenEditModal = (item: ITodo) => {
-    setEditingItem(item);
-    setIsOpenEditModal(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setIsOpenEditModal(false);
-  };
-
+const TodoList = ({ list, editingItem, isOpenEditModal, onOpenEditModal, onCloseEditModal, editTodo }: Props) => {
   return (
     <View>
       {list.map(i => (
-        <TodoItem key={i.id} title={i.title} description={i.description} onClickEdit={() => handleOpenEditModal(i)} />
+        <TodoItem key={i.id} title={i.title} description={i.description} onClickEdit={() => onOpenEditModal(i)} />
       ))}
 
-      <DeModal isOpen={isOpenEditModal} onClose={handleCloseEditModal} isHideHeader>
-        <EditTodoContext onClose={handleCloseEditModal} initialState={editingItem} />
+      <DeModal isOpen={isOpenEditModal} onClose={onCloseEditModal} isHideHeader>
+        <EditTodoContext onClose={onCloseEditModal} initialState={editingItem} editTodo={editTodo} />
       </DeModal>
     </View>
   );

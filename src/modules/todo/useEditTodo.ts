@@ -9,10 +9,15 @@ const resolvedSchema = yupResolver(object(editTodoSchema));
 
 type Props = {
   initialState: ITodo;
+  editTodo: (editTodo: EditTodoForm) => void;
 };
 
-export const useEditTodo = ({ initialState }: Props) => {
-  const { control, handleSubmit } = useForm<EditTodoForm>({
+export const useEditTodo = ({ initialState, editTodo }: Props) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<EditTodoForm>({
     defaultValues: initialState,
     resolver: resolvedSchema,
   });
@@ -24,7 +29,7 @@ export const useEditTodo = ({ initialState }: Props) => {
    */
 
   const onValidSubmit = (formData: EditTodoForm) => {
-    console.log('edit submit', formData);
+    editTodo(formData);
     openSnackbar('success', 'Edit Todo successfully');
   };
 
@@ -36,6 +41,7 @@ export const useEditTodo = ({ initialState }: Props) => {
 
   return {
     control,
+    errors,
     onClickSubmit,
   };
 };

@@ -1,57 +1,36 @@
-import { DeModal, useSnackbar } from 'components';
-import { CreateTodoContent, TodoList } from 'modules';
-import { CreateTodoForm, ITodo } from 'modules/todo/todo.interface';
-import { useState } from 'react';
+import { DeModal } from 'components';
+import { CreateTodoContent, TodoList, useTodoPage } from 'modules';
 import { StyleSheet, View } from 'react-native';
 import { FAB } from 'react-native-paper';
 
-const initialTodoList: ITodo[] = [
-  {
-    id: 1,
-    title: 'read 2',
-    description: 'read book',
-  },
-  {
-    id: 2,
-    title: 'eat',
-    description: 'eat food',
-  },
-];
-
 const TodoScreen = () => {
-  const [todoList, setTodoList] = useState(initialTodoList);
-  const [isOpenCreateTodoModal, setIsOpenCreateTodoModal] = useState(false);
+  const {
+    todoList,
+    isOpenCreateTodoModal,
 
-  const { openSnackbar } = useSnackbar();
+    createTodo,
+    onClickCreateTodo,
+    onCloseCreateTodoModal,
 
-  const onClickCreateTodo = () => {
-    setIsOpenCreateTodoModal(true);
-  };
+    editingItem,
+    isOpenEditModal,
+    onOpenEditModal,
+    onCloseEditModal,
 
-  const onCloseCreateTodoModal = () => {
-    setIsOpenCreateTodoModal(false);
-  };
-
-  const createTodo = (newTodoForm: CreateTodoForm) => {
-    try {
-      const newTodo: ITodo = {
-        id: initialTodoList.length + 1,
-        title: newTodoForm.title,
-        description: newTodoForm.description,
-      };
-
-      setTodoList([...todoList, newTodo]);
-      openSnackbar('success', 'Create todo successfully');
-      onCloseCreateTodoModal();
-    } catch (error) {
-      openSnackbar('error', 'Create todo fail');
-    }
-  };
+    editTodo,
+  } = useTodoPage();
 
   return (
     <>
       <View>
-        <TodoList list={todoList} />
+        <TodoList
+          list={todoList}
+          editingItem={editingItem}
+          isOpenEditModal={isOpenEditModal}
+          onOpenEditModal={onOpenEditModal}
+          onCloseEditModal={onCloseEditModal}
+          editTodo={editTodo}
+        />
       </View>
 
       <FAB size="medium" icon="plus" style={styles.fab} onPress={onClickCreateTodo} />
