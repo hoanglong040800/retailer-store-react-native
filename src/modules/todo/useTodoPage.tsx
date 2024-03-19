@@ -2,7 +2,7 @@ import { useSnackbar } from 'components';
 import { useState } from 'react';
 import { SnackbarType } from 'types';
 import { generateRandomString } from 'utils';
-import { CreateTodoForm, EditTodoForm, ITodo } from './todo.interface';
+import { CreateTodoForm, EditTodoForm, ITodo } from './core/todo.interface';
 
 const initialTodoList: ITodo[] = [
   {
