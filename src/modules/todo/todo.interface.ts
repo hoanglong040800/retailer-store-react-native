@@ -1,5 +1,5 @@
 export interface ITodo {
-  id: number;
+  id: string;
   title: string;
   description: string;
 }
@@ -11,5 +11,5 @@ export interface CreateTodoForm {
 }
 
 export interface EditTodoForm extends CreateTodoForm {
-  id?: number;
+  id?: string;
 }

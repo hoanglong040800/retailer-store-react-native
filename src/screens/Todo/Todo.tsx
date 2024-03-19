@@ -6,18 +6,17 @@ import { FAB } from 'react-native-paper';
 const TodoScreen = () => {
   const {
     todoList,
-    isOpenCreateTodoModal,
-
-    createTodo,
-    onClickCreateTodo,
-    onCloseCreateTodoModal,
-
     editingItem,
     isOpenEditModal,
+    isOpenCreateTodoModal,
+
+    onClickCreateTodo,
+    onCloseCreateTodoModal,
     onOpenEditModal,
     onCloseEditModal,
-
+    createTodo,
     editTodo,
+    deleteTodo,
   } = useTodoPage();
 
   return (
@@ -30,6 +29,7 @@ const TodoScreen = () => {
           onOpenEditModal={onOpenEditModal}
           onCloseEditModal={onCloseEditModal}
           editTodo={editTodo}
+          deleteTodo={deleteTodo}
         />
       </View>
 

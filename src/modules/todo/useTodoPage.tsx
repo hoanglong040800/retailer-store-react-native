@@ -1,15 +1,17 @@
 import { useSnackbar } from 'components';
 import { useState } from 'react';
+import { SnackbarType } from 'types';
+import { generateRandomString } from 'utils';
 import { CreateTodoForm, EditTodoForm, ITodo } from './todo.interface';
 
 const initialTodoList: ITodo[] = [
   {
-    id: 1,
+    id: generateRandomString(),
     title: 'read 2',
     description: 'read book',
   },
   {
-    id: 2,
+    id: generateRandomString(),
     title: 'eat',
     description: 'eat food',
   },
@@ -45,19 +47,25 @@ export const useTodoPage = () => {
     setIsOpenCreateTodoModal(false);
   };
 
+  const handleShowSnackbar = (type: SnackbarType, action: 'create' | 'edit' | 'delete'): void => {
+    const textByAction = type === 'success' ? 'sucessfully' : 'fail!';
+
+    openSnackbar(type, `${action} todo ${textByAction}`);
+  };
+
   const createTodo = (newTodoForm: CreateTodoForm) => {
     try {
       const newTodo: ITodo = {
-        id: initialTodoList.length + 1,
+        id: generateRandomString(),
         title: newTodoForm.title,
         description: newTodoForm.description,
       };
 
       setTodoList([...todoList, newTodo]);
-      openSnackbar('success', 'Create todo successfully');
+      handleShowSnackbar('success', 'create');
       onCloseCreateTodoModal();
     } catch (error) {
-      openSnackbar('error', 'Create todo fail');
+      handleShowSnackbar('error', 'create');
     }
   };
 
@@ -75,10 +83,19 @@ export const useTodoPage = () => {
       });
 
       setTodoList(newList);
-      openSnackbar('success', 'Edit todo successfully');
+      handleShowSnackbar('success', 'edit');
       onCloseEditModal();
     } catch (error) {
-      openSnackbar('error', 'Edit Todo fail');
+      handleShowSnackbar('error', 'edit');
+    }
+  };
+
+  const deleteTodo = (deleteId: string) => {
+    try {
+      setTodoList(todoList.filter((item: ITodo) => item.id !== deleteId));
+      handleShowSnackbar('success', 'delete');
+    } catch (error) {
+      handleShowSnackbar('error', 'edit');
     }
   };
 
@@ -94,5 +111,6 @@ export const useTodoPage = () => {
     onCloseEditModal,
     createTodo,
     editTodo,
+    deleteTodo,
   };
 };

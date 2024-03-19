@@ -11,13 +11,28 @@ type Props = {
   onOpenEditModal: (item: ITodo) => void;
   onCloseEditModal: () => void;
   editTodo: (item: EditTodoForm) => void;
+  deleteTodo: (id: string) => void;
 };
 
-const TodoList = ({ list, editingItem, isOpenEditModal, onOpenEditModal, onCloseEditModal, editTodo }: Props) => {
+const TodoList = ({
+  list,
+  editingItem,
+  isOpenEditModal,
+  onOpenEditModal,
+  onCloseEditModal,
+  editTodo,
+  deleteTodo,
+}: Props) => {
   return (
     <View>
       {list.map(i => (
-        <TodoItem key={i.id} title={i.title} description={i.description} onClickEdit={() => onOpenEditModal(i)} />
+        <TodoItem
+          key={i.id}
+          title={i.title}
+          description={i.description}
+          onClickEdit={() => onOpenEditModal(i)}
+          onClickDelete={() => deleteTodo(i.id)}
+        />
       ))}
 
       <DeModal isOpen={isOpenEditModal} onClose={onCloseEditModal} isHideHeader>
