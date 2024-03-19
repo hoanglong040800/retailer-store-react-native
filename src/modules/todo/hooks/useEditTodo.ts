@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object } from 'yup';
 import { useSnackbar } from 'components';
-import { EditTodoForm, ITodo } from './core/todo.interface';
-import { editTodoSchema } from './core/todo.schema';
+import { EditTodoForm, ITodo } from '../core/todo.interface';
+import { editTodoSchema } from '../core/todo.schema';
 
 const resolvedSchema = yupResolver(object(editTodoSchema));
 

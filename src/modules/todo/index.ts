@@ -5,5 +5,5 @@ import EditTodoContext from './EditTodoContent';
 
 export { TodoList, TodoItem, CreateTodoContent, EditTodoContext };
 
-export * from './useTodoPage';
+export * from './hooks';
 export * from './core';

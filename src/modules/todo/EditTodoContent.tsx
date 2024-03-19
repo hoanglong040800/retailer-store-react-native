@@ -1,5 +1,5 @@
 import { DeAppBar, DeTextInput } from 'components';
-import { useEditTodo } from './useEditTodo';
+import { useEditTodo } from './hooks/useEditTodo';
 import { EditTodoForm, ITodo } from './core/todo.interface';
 
 type Props = {
