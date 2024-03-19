@@ -1,20 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
+// https://github.com/expo/expo/issues/23104#issuecomment-1689566248
+import '@expo/metro-runtime';
+import { NavigationContainer } from '@react-navigation/native';
+import { SnackbarProvider } from 'components';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AppNavigator } from 'screens';
 
-export default function App() {
-  const name = 'long';
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Hello {name}</Text>
-    </View>
+    <SafeAreaProvider>
+      <SnackbarProvider>
+        <NavigationContainer>
+          <AppNavigator />
+        </NavigationContainer>
+      </SnackbarProvider>
+    </SafeAreaProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

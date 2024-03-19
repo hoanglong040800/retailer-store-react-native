@@ -19,17 +19,26 @@
   "rules": {
     "prettier/prettier": 0,
     "react/react-in-jsx-scope": 0,
-    "import/no-unresolved": 0,
-    "react/jsx-filename-extension": [1, {
-      "extensions": [
-        ".ts",
-        ".tsx"
-      ]
-    }],
-    "no-use-before-define": "off",
-    "import/extensions": ["error", "never"],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": ["function-declaration", "arrow-function"],
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "react/prop-types": 0,
-    "no-shadow": "off",
+    "react/require-default-props": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "import/prefer-default-export": 0,
+    "no-use-before-define": 0,
+    "no-shadow": 0,
     "@typescript-eslint/no-shadow": ["error"]
   }
 }
