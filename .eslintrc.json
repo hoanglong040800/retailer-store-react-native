@@ -34,7 +34,13 @@
     ],
     "react/prop-types": 0,
     "react/require-default-props": 0,
-    "react/jsx-props-no-spreading": [1, { "extenstions": [".ts", ".tsx"] }],
+    "react/jsx-props-no-spreading": [
+      1,
+      {
+        "extenstions": [".ts", ".tsx"],
+        "exceptions": [".test.ts", ".test.tsx"]
+      }
+    ],
     "import/no-unresolved": 0,
     "import/extensions": 0,
     "import/prefer-default-export": 0,

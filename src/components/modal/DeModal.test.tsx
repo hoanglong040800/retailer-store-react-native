@@ -8,7 +8,7 @@ type Props = ComponentProps<typeof DeModal>;
 // UT: mock component
 jest.mock('../appbar/DeAppBar.tsx', () => () => <div data-testid="DeAppBar" />);
 
-// UT: mock component default
+// UT: mock export default component
 jest.mock('react-native', () => ({
   Modal: ({ children }) => <div data-testid="Modal">{children}</div>,
 }));
