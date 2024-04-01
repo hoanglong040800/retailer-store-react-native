@@ -1,8 +1,8 @@
 import { View } from 'react-native';
 import { DeModal } from 'components';
-import { EditTodoForm, ITodo } from './todo.interface';
+import { EditTodoForm, ITodo } from './core/todo.interface';
 import TodoItem from './TodoItem';
-import EditTodoContext from './EditTodoContent';
+import EditTodoContext from './form/EditTodoContent';
 
 type Props = {
   list: ITodo[];
