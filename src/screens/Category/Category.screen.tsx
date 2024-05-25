@@ -1,7 +1,7 @@
-import { Text } from 'react-native-paper';
+import { CategoryDrawer } from 'modules/category';
 
 const CategoryScreen = () => {
-  return <Text>Category Screen</Text>;
+  return <CategoryDrawer />;
 };
 
 export default CategoryScreen;
