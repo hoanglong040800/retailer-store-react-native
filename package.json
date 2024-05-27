@@ -3,7 +3,8 @@
   "private": true,
   "name": "frontend",
   "scripts": {
-    "dev": "expo start",
+    "sync-types": "node src/types/script/sync-types.js",
+    "dev": "yarn sync-types && expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -29,6 +30,7 @@
     "@react-navigation/stack": "^6.3.29",
     "@testing-library/react": "^14.2.2",
     "expo": "^50.0.1",
+    "fs": "^0.0.1-security",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.50.1",
