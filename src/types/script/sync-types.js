@@ -37,11 +37,11 @@ async function copyFolder(source, destination) {
         await fs.copyFile(sourceItemPath, destinationItemPath);
       }
     }
-
-    console.log(`Copied folder ${source} to ${destination}`);
   } catch (error) {
     console.error('Error copying folder:', error);
   }
+
+  console.log('Finish sync types')
 }
 
 copyFolder(dtoPath.src, dtoPath.des);

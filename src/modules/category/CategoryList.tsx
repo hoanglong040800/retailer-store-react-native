@@ -1,8 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import CategoryItem from './CategoryItem';
+import { CategoryDto } from 'types';
 
 type Props = {
-  list: { icon: string; name: string }[];
+  list: CategoryDto[]
   direction?: 'row' | 'column';
   onPressItem?: (index: number) => void;
 };

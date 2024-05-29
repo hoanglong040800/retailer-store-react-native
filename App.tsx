@@ -1,18 +1,23 @@
 // https://github.com/expo/expo/issues/23104#issuecomment-1689566248
 import '@expo/metro-runtime';
 import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SnackbarProvider } from 'components';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppNavigator } from 'screens';
 
+const queryClient = new QueryClient();
+
 const App = () => {
   return (
     <SafeAreaProvider>
-      <SnackbarProvider>
-        <NavigationContainer>
-          <AppNavigator />
-        </NavigationContainer>
-      </SnackbarProvider>
+      <QueryClientProvider client={queryClient}>
+        <SnackbarProvider>
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
+        </SnackbarProvider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 };
