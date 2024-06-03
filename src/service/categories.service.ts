@@ -1,5 +1,6 @@
-// TODO update with axios
-export const getAllCategories = async () => {
-  const res = await fetch('http://localhost:5000/categories');
-  return res.json();
-};
+import { axiosClient } from 'config';
+import { CategoryDto } from 'types';
+
+const ROUTE = '/categories';
+
+export const getAllCategories = (): Promise<CategoryDto[]> => axiosClient.get(ROUTE);

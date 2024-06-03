@@ -41,7 +41,7 @@ async function copyFolder(source, destination) {
     console.error('Error copying folder:', error);
   }
 
-  console.log('Finish sync types')
+  console.log('Finish sync types');
 }
 
 copyFolder(dtoPath.src, dtoPath.des);

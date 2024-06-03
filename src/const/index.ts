@@ -1,2 +1,2 @@
-export * from './global-style.const';
+export * from './env.const';
 export * from './theme.const';

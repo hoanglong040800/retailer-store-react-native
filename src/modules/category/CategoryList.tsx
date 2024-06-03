@@ -3,7 +3,7 @@ import CategoryItem from './CategoryItem';
 import { CategoryDto } from 'types';
 
 type Props = {
-  list: CategoryDto[]
+  list: CategoryDto[];
   direction?: 'row' | 'column';
   onPressItem?: (index: number) => void;
 };

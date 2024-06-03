@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { THEME } from 'const';
-import CategoryList from './CategoryList';
 import { useQuery } from '@tanstack/react-query';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 import { getAllCategories } from 'service';
 import { CategoryDto } from 'types';
-import { ActivityIndicator } from 'react-native-paper';
+import { THEME } from 'const';
+import CategoryList from './CategoryList';
 
 const CategoryDrawer = () => {
-  const { data: categoriesList, isLoading } = useQuery<null, null, CategoryDto[]>({
+  const { data: categoriesList, isLoading } = useQuery<CategoryDto[], null, CategoryDto[]>({
     queryKey: ['categories'],
     queryFn: getAllCategories,
   });
