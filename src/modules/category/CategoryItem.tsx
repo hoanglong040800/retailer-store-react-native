@@ -4,14 +4,15 @@ import { Text } from 'react-native-paper';
 type Props = {
   icon: string;
   name: string;
+  size?: 'S' | 'M';
   onPress: () => void;
 };
 
-const CategoryItem = ({ icon, name, onPress = () => null }: Props) => {
+const CategoryItem = ({ icon, name, size = 'M', onPress = () => null }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        <Image source={{ uri: icon }} style={styles.image} />
+        <Image source={{ uri: icon }} style={styles[`image${size}`]} />
 
         <Text>{name}</Text>
       </View>
@@ -21,11 +22,15 @@ const CategoryItem = ({ icon, name, onPress = () => null }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
     width: 100,
   },
 
-  image: {
+  imageS: {
+    width: 50,
+    height: 50,
+  },
+
+  imageM: {
     width: 100,
     height: 100,
   },
