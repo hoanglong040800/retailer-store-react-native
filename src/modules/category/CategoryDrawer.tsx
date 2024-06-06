@@ -1,13 +1,16 @@
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { getAllCategories } from 'service';
 import { CategoryDto } from 'types';
-import { THEME } from 'const';
+import { SCREEN, THEME } from 'const';
 import CategoryList from './CategoryList';
 
 const CategoryDrawer = () => {
+  const navigation = useNavigation();
+
   const { data: categoriesList, isLoading } = useQuery<CategoryDto[], null, CategoryDto[]>({
     queryKey: ['categories'],
     queryFn: getAllCategories,
@@ -20,7 +23,7 @@ const CategoryDrawer = () => {
   };
 
   const onPressSubCategory = () => {
-    // TODO RSP-3
+    navigation.dispatch(CommonActions.navigate(SCREEN.PRODUCT_LIST));
   };
 
   if (isLoading) {

@@ -1,14 +1,15 @@
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 import { AccountScreen } from 'screens/Account';
 import { CartScreen } from 'screens/Cart';
-import { CategoryScreen } from 'screens/Category';
 import { HomeScreen } from 'screens/Home';
 import { NotiScreen } from 'screens/Noti';
 import { TabScreenProps } from 'types';
+import { SCREEN } from 'const';
+import CategoryStack from './Category.stack';
 
 const tabScreen: TabScreenProps[] = [
   {
-    name: 'Home',
+    name: SCREEN.HOME,
     component: HomeScreen,
     options: {
       tabBarLabel: 'Home',
@@ -17,7 +18,7 @@ const tabScreen: TabScreenProps[] = [
   },
 
   {
-    name: 'Cart',
+    name: SCREEN.CART,
     component: CartScreen,
     options: {
       tabBarLabel: 'Cart',
@@ -26,8 +27,8 @@ const tabScreen: TabScreenProps[] = [
   },
 
   {
-    name: 'Category',
-    component: CategoryScreen,
+    name: SCREEN.CATEGORY,
+    component: CategoryStack,
     options: {
       tabBarLabel: 'Category',
       iconName: 'view-grid',
@@ -35,7 +36,7 @@ const tabScreen: TabScreenProps[] = [
   },
 
   {
-    name: 'Notification',
+    name: SCREEN.NOTI,
     component: NotiScreen,
     options: {
       tabBarLabel: 'Notification',
@@ -44,7 +45,7 @@ const tabScreen: TabScreenProps[] = [
   },
 
   {
-    name: 'Account',
+    name: SCREEN.ACCOUNT,
     component: AccountScreen,
     options: {
       tabBarLabel: 'Account',
