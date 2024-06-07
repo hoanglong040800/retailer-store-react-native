@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { getAllCategories } from 'service';
-import { CategoryDto } from 'types';
+import { CategoryDto, ParamsType } from 'types';
 import { SCREEN, THEME } from 'const';
 import CategoryList from './CategoryList';
 
@@ -22,8 +22,19 @@ const CategoryDrawer = () => {
     setCurMainIndex(index);
   };
 
-  const onPressSubCategory = () => {
-    navigation.dispatch(CommonActions.navigate(SCREEN.PRODUCT_LIST));
+  // TODO create useAppNavigation hooks
+  const onPressSubCategory = (index: number) => {
+    const selectedMainCateId = categoriesList[curMainIndex]?.id;
+    const selectedSubCateId = categoriesList[curMainIndex]?.childCategories?.[index].id;
+
+    const params: ParamsType = {
+      selectedMainCateId,
+      selectedSubCateId,
+    };
+
+    const actionNavigate = CommonActions.navigate(SCREEN.PRODUCT_LIST, params);
+
+    navigation.dispatch(actionNavigate);
   };
 
   if (isLoading) {

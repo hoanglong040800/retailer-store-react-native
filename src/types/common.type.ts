@@ -15,3 +15,10 @@ export type TabScreenProps = {
     iconName: any;
   };
 };
+
+export type ParamsType = {
+  selectedMainCateId?: string;
+  selectedSubCateId?: string;
+  price?: number;
+  active?: boolean;
+};

@@ -13,8 +13,8 @@ const ProductList = ({ products, style }: Props) => {
   );
 
   // TODO return empty component
-  if (!products) {
-    return <View>No products :( </View>;
+  if (!products || products.length === 0) {
+    return <View>No product found</View>;
   }
 
   return (
