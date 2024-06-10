@@ -1,5 +1,7 @@
 import { FlatList, StyleSheet, ViewStyle, StyleProp, View } from 'react-native';
 import { ProductDto } from 'types/dto/product.dto';
+import { useAppNavigation } from 'hooks';
+import { Screen } from 'types';
 import ProductCard from './ProductCard';
 
 type Props = {
@@ -8,8 +10,14 @@ type Props = {
 };
 
 const ProductList = ({ products, style }: Props) => {
+  const { navigate } = useAppNavigation();
+
+  const onPressProductCard = (id: string) => {
+    navigate(Screen.ProductDetail, { productId: id });
+  };
+
   const renderProductCard = ({ item }: { item: ProductDto }) => (
-    <ProductCard name={item.name} image={item.image} price={item.price} />
+    <ProductCard name={item.name} image={item.image} price={item.price} onPress={() => onPressProductCard(item.id)} />
   );
 
   // TODO return empty component

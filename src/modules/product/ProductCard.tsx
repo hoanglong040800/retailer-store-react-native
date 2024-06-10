@@ -5,11 +5,12 @@ type Props = {
   name: string;
   image: string;
   price: number;
+  onPress: () => void;
 };
 
-const ProductCard = ({ name, image, price }: Props) => {
+const ProductCard = ({ name, image, price, onPress = () => null }: Props) => {
   return (
-    <Card style={styles.container}>
+    <Card style={styles.container} onPress={onPress}>
       <Card.Cover source={{ uri: image }} style={styles.cover} resizeMode="contain" />
 
       <Card.Content>

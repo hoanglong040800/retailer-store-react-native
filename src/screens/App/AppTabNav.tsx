@@ -3,13 +3,12 @@ import { AccountScreen } from 'screens/Account';
 import { CartScreen } from 'screens/Cart';
 import { HomeScreen } from 'screens/Home';
 import { NotiScreen } from 'screens/Noti';
-import { TabScreenProps } from 'types';
-import { SCREEN } from 'const';
+import { TabScreenProps, Screen } from 'types';
 import CategoryStack from './Category.stack';
 
 const tabScreen: TabScreenProps[] = [
   {
-    name: SCREEN.HOME,
+    name: Screen.Home,
     component: HomeScreen,
     options: {
       tabBarLabel: 'Home',
@@ -18,7 +17,7 @@ const tabScreen: TabScreenProps[] = [
   },
 
   {
-    name: SCREEN.CART,
+    name: Screen.Cart,
     component: CartScreen,
     options: {
       tabBarLabel: 'Cart',
@@ -27,7 +26,7 @@ const tabScreen: TabScreenProps[] = [
   },
 
   {
-    name: SCREEN.CATEGORY,
+    name: Screen.Category,
     component: CategoryStack,
     options: {
       tabBarLabel: 'Category',
@@ -36,7 +35,7 @@ const tabScreen: TabScreenProps[] = [
   },
 
   {
-    name: SCREEN.NOTI,
+    name: Screen.Noti,
     component: NotiScreen,
     options: {
       tabBarLabel: 'Notification',
@@ -45,7 +44,7 @@ const tabScreen: TabScreenProps[] = [
   },
 
   {
-    name: SCREEN.ACCOUNT,
+    name: Screen.Account,
     component: AccountScreen,
     options: {
       tabBarLabel: 'Account',

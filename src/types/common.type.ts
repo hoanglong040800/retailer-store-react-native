@@ -19,6 +19,18 @@ export type TabScreenProps = {
 export type ParamsType = {
   selectedMainCateId?: string;
   selectedSubCateId?: string;
+  productId?: string;
+
   price?: number;
   active?: boolean;
 };
+
+export enum Screen {
+  Home = 'Home',
+  Category = 'Category',
+  ProductList = 'ProductList',
+  ProductDetail = 'ProductDetail',
+  Cart = 'Cart',
+  Noti = 'Noti',
+  Account = 'Account',
+}

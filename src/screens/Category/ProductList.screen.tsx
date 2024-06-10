@@ -44,6 +44,7 @@ const ProductListScreen = ({ route: { params }, navigation }: Props) => {
 
   return (
     <View style={styles.container}>
+      {/* TODO implement components go back button */}
       <Button onPress={() => navigation.goBack()}>Go back</Button>
 
       <CategoryList

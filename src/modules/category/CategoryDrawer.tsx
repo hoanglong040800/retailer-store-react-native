@@ -1,15 +1,15 @@
-import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { getAllCategories } from 'service';
-import { CategoryDto, ParamsType } from 'types';
-import { SCREEN, THEME } from 'const';
+import { CategoryDto, ParamsType, Screen } from 'types';
+import { THEME } from 'const';
+import { useAppNavigation } from 'hooks';
 import CategoryList from './CategoryList';
 
 const CategoryDrawer = () => {
-  const navigation = useNavigation();
+  const { navigate } = useAppNavigation();
 
   const { data: categoriesList, isLoading } = useQuery<CategoryDto[], null, CategoryDto[]>({
     queryKey: ['categories'],
@@ -22,19 +22,13 @@ const CategoryDrawer = () => {
     setCurMainIndex(index);
   };
 
-  // TODO create useAppNavigation hooks
   const onPressSubCategory = (index: number) => {
-    const selectedMainCateId = categoriesList[curMainIndex]?.id;
-    const selectedSubCateId = categoriesList[curMainIndex]?.childCategories?.[index].id;
-
     const params: ParamsType = {
-      selectedMainCateId,
-      selectedSubCateId,
+      selectedMainCateId: categoriesList[curMainIndex]?.id,
+      selectedSubCateId: categoriesList[curMainIndex]?.childCategories?.[index].id,
     };
 
-    const actionNavigate = CommonActions.navigate(SCREEN.PRODUCT_LIST, params);
-
-    navigation.dispatch(actionNavigate);
+    navigate(Screen.ProductList, params);
   };
 
   if (isLoading) {
