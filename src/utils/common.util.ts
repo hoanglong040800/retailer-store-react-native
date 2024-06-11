@@ -6,3 +6,19 @@ export function generateRandomString(length = 16) {
   }
   return result;
 }
+
+export function formatCurrency(amount: number, locale = 'vi-VN'): string {
+  if (Number.isNaN(amount)) {
+    return '';
+  }
+
+  const formatter = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: 'VND',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+    useGrouping: true,
+  });
+
+  return formatter.format(amount);
+}

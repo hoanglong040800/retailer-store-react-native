@@ -76,7 +76,7 @@ const AppTabNav = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    paddingTop: 8,
   },
 });
 
