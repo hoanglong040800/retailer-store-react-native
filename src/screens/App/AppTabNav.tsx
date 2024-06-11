@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 import { AccountScreen } from 'screens/Account';
 import { CartScreen } from 'screens/Cart';
@@ -70,7 +71,13 @@ const AppTabNav = () => {
       />
     ));
 
-  return <Tab.Navigator>{renderTabs()}</Tab.Navigator>;
+  return <Tab.Navigator style={styles.container}>{renderTabs()}</Tab.Navigator>;
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 16,
+  },
+});
 
 export default AppTabNav;
