@@ -12,7 +12,7 @@ type Props = {
 const ProductDetail = ({ name, description, price, image }: Props) => {
   return (
     <View style={styles.container}>
-      <Image source={{ uri: image }} style={styles.image} />
+      <Image source={{ uri: image }} style={styles.image} resizeMode="contain" />
 
       <Surface elevation={1} style={styles.surface}>
         <View style={styles.content}>
