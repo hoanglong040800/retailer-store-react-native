@@ -1,10 +1,11 @@
-import { NavigationProp, Route } from '@react-navigation/native';
+import { Route } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
+import { ScreenAppBar } from 'components';
 import { CategoryList } from 'modules/category';
 import { ProductList } from 'modules/product';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Button } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper';
 import { getCategoryById } from 'service';
 import { CategoryDto, ParamsType } from 'types';
 
@@ -12,10 +13,9 @@ type Params = Pick<ParamsType, 'selectedMainCateId' | 'selectedSubCateId'>;
 
 type Props = {
   route: Route<'ProductList', Params>;
-  navigation: NavigationProp<{ ProductList: Params }>;
 };
 
-const ProductListScreen = ({ route: { params }, navigation }: Props) => {
+const ProductListScreen = ({ route: { params } }: Props) => {
   const [selectedSubCate, setSelectedSubCate] = useState<{ index: number; id: string }>(null);
 
   const { data: lv1Category, isLoading } = useQuery<CategoryDto, null, CategoryDto>({
@@ -44,8 +44,7 @@ const ProductListScreen = ({ route: { params }, navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      {/* TODO implement components go back button */}
-      <Button onPress={() => navigation.goBack()}>Go back</Button>
+      <ScreenAppBar title={lv1Category.name} />
 
       <CategoryList
         list={lv1Category.childCategories}

@@ -21,7 +21,6 @@ const ProductList = ({ products, style }: Props) => {
     <ProductCard name={item.name} image={item.image} price={item.price} onPress={() => onPressProductCard(item.id)} />
   );
 
-  // TODO return empty component
   if (!products || products.length === 0) {
     return (
       <View>

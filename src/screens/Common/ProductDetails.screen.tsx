@@ -1,7 +1,6 @@
-import { NavigationProp, Route } from '@react-navigation/native';
+import { Route } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
-import { BottomButtonWrapper } from 'components';
-import { CategoryBreadCrumb } from 'modules/category';
+import { BottomButtonWrapper, ScreenAppBar } from 'components';
 import { ProductDetail } from 'modules/product/detail';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
@@ -12,10 +11,9 @@ type Params = Pick<ParamsType, 'productId'>;
 
 type Props = {
   route: Route<'ProductDetails', Params>;
-  navigation: NavigationProp<{ ProductDetails: Params }>;
 };
 
-const ProductDetailsScreen = ({ navigation, route: { params } }: Props) => {
+const ProductDetailsScreen = ({ route: { params } }: Props) => {
   const { data: product, isLoading } = useQuery<ProductDto, null, ProductDto>({
     queryKey: ['product'],
     queryFn: () => getProductById(params.productId),
@@ -31,11 +29,9 @@ const ProductDetailsScreen = ({ navigation, route: { params } }: Props) => {
 
   return (
     <View style={styles.container}>
+      <ScreenAppBar title={product.name} />
+
       <ScrollView>
-        <Button onPress={() => navigation.goBack()}>Go back</Button>
-
-        <CategoryBreadCrumb />
-
         <ProductDetail
           name={product.name}
           description={product.description}
