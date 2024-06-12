@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppHeader } from 'components/header';
-import AppTabNav from './AppTabNav';
+import CategoryStack from './Category.stack';
 
 const AppNavigator = () => {
   const Stack = createStackNavigator();
@@ -8,14 +8,8 @@ const AppNavigator = () => {
   const renderAppHeader = () => <AppHeader />;
 
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="AppTabNav"
-        component={AppTabNav}
-        options={{
-          header: renderAppHeader,
-        }}
-      />
+    <Stack.Navigator screenOptions={{ header: renderAppHeader }}>
+      <Stack.Screen name="AppTabNav" component={CategoryStack} />
     </Stack.Navigator>
   );
 };

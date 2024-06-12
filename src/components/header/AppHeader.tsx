@@ -1,18 +1,34 @@
 import { HeaderLocation, HeaderSearch } from 'modules';
+import { CategoryDrawer } from 'modules/category';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 
 const AppHeader = () => {
-  return (
-    <Appbar.Header style={styles.header}>
-      <View style={styles.search}>
-        <HeaderSearch />
-      </View>
+  const [isShowDrawer, setIsShowDrawer] = useState(false);
 
-      <View style={styles.location}>
-        <HeaderLocation />
+  const toggleDrawer = () => {
+    setIsShowDrawer(!isShowDrawer);
+  };
+
+  return (
+    <View>
+      <Appbar.Header style={styles.header}>
+        <Appbar.Action icon="menu" onPress={toggleDrawer} />
+
+        <View style={styles.search}>
+          <HeaderSearch />
+        </View>
+
+        <View style={styles.location}>
+          <HeaderLocation />
+        </View>
+      </Appbar.Header>
+
+      <View style={{ display: isShowDrawer ? 'flex' : 'none' }}>
+        <CategoryDrawer callbackAfterPressCategory={toggleDrawer} />
       </View>
-    </Appbar.Header>
+    </View>
   );
 };
 

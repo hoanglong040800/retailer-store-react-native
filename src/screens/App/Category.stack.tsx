@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { CategoryScreen, ProductDetailsScreen, ProductListScreen } from 'screens/Category';
+import { ProductDetailsScreen, ProductListScreen } from 'screens/Common';
+import { HomeScreen } from 'screens/Home';
 import { Screen } from 'types';
 
 const CategoryStack = () => {
@@ -7,7 +8,7 @@ const CategoryStack = () => {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={Screen.Category} component={CategoryScreen} />
+      <Stack.Screen name={Screen.Home} component={HomeScreen} />
       <Stack.Screen name={Screen.ProductList} component={ProductListScreen} />
       <Stack.Screen name={Screen.ProductDetail} component={ProductDetailsScreen} />
     </Stack.Navigator>

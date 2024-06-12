@@ -1,7 +1,7 @@
-import { Text } from 'react-native';
+import { Text } from 'react-native-paper';
 
 const HomeScreen = () => {
-  return <Text>Hello Long</Text>;
+  return <Text>Home</Text>;
 };
 
 export default HomeScreen;

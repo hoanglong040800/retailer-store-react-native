@@ -8,7 +8,11 @@ import { THEME } from 'const';
 import { useAppNavigation } from 'hooks';
 import CategoryList from './CategoryList';
 
-const CategoryDrawer = () => {
+type Props = {
+  callbackAfterPressCategory?: () => void;
+};
+
+const CategoryDrawer = ({ callbackAfterPressCategory = () => null }: Props) => {
   const { navigate } = useAppNavigation();
 
   const { data: categoriesList, isLoading } = useQuery<CategoryDto[], null, CategoryDto[]>({
@@ -29,6 +33,7 @@ const CategoryDrawer = () => {
     };
 
     navigate(Screen.ProductList, params);
+    callbackAfterPressCategory();
   };
 
   if (isLoading) {

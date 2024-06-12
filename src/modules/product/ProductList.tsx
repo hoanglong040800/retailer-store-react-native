@@ -1,3 +1,4 @@
+import { Text } from 'react-native-paper';
 import { FlatList, StyleSheet, ViewStyle, StyleProp, View } from 'react-native';
 import { ProductDto } from 'types/dto/product.dto';
 import { useAppNavigation } from 'hooks';
@@ -22,7 +23,11 @@ const ProductList = ({ products, style }: Props) => {
 
   // TODO return empty component
   if (!products || products.length === 0) {
-    return <View>No product found</View>;
+    return (
+      <View>
+        <Text>No product found</Text>
+      </View>
+    );
   }
 
   return (
