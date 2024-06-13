@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { getAllCategories } from 'service';
 import { CategoryDto, ParamsType, Screen } from 'types';
@@ -15,6 +15,7 @@ type Props = {
 const CategoryDrawer = ({ callbackAfterPressCategory = () => null }: Props) => {
   const { navigate } = useAppNavigation();
 
+  // TODO use data from config
   const { data: categoriesList, isLoading } = useQuery<CategoryDto[], null, CategoryDto[]>({
     queryKey: ['categories'],
     queryFn: getAllCategories,
@@ -42,9 +43,7 @@ const CategoryDrawer = ({ callbackAfterPressCategory = () => null }: Props) => {
 
   return (
     <View style={styles.layout}>
-      <ScrollView style={styles.leftCate}>
-        <CategoryList list={categoriesList} onPressItem={onPressMainCategory} />
-      </ScrollView>
+      <CategoryList list={categoriesList} onPressItem={onPressMainCategory} style={styles.leftCate} />
 
       <View style={styles.rightCate}>
         <CategoryList
@@ -64,9 +63,9 @@ const styles = StyleSheet.create({
   },
 
   leftCate: {
-    backgroundColor: THEME.colors.elevation.level1,
-    padding: 8,
+    backgroundColor: THEME.colors.elevation.level5,
     maxWidth: 150,
+    paddingBottom: 16,
   },
 
   rightCate: {

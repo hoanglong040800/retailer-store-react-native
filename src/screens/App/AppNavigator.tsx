@@ -9,7 +9,7 @@ const AppNavigator = () => {
 
   return (
     <Stack.Navigator screenOptions={{ header: renderAppHeader }}>
-      <Stack.Screen name="AppTabNav" component={CategoryStack} />
+      <Stack.Screen name="Main" component={CategoryStack} />
     </Stack.Navigator>
   );
 };

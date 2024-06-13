@@ -1,7 +1,7 @@
 import { Text } from 'react-native-paper';
 
 const HomeScreen = () => {
-  return <Text>Home</Text>;
+  return <Text>Home Screen</Text>;
 };
 
 export default HomeScreen;

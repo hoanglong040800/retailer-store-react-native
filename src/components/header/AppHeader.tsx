@@ -1,18 +1,23 @@
+import { CUSTOM_THEME, THEME } from 'const';
 import { HeaderLocation, HeaderSearch } from 'modules';
-import { CategoryDrawer } from 'modules/category';
+import { CategoryDrawerModal } from 'modules/category';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 
 const AppHeader = () => {
-  const [isShowDrawer, setIsShowDrawer] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
-    setIsShowDrawer(!isShowDrawer);
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
+  const onCloseDrawer = () => {
+    setIsDrawerOpen(false);
   };
 
   return (
-    <View>
+    <>
       <Appbar.Header style={styles.header}>
         <Appbar.Action icon="menu" onPress={toggleDrawer} />
 
@@ -25,17 +30,15 @@ const AppHeader = () => {
         </View>
       </Appbar.Header>
 
-      <View style={{ display: isShowDrawer ? 'flex' : 'none' }}>
-        <CategoryDrawer callbackAfterPressCategory={toggleDrawer} />
-      </View>
-    </View>
+      <CategoryDrawerModal isOpen={isDrawerOpen} onClose={onCloseDrawer} />
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: 'rgb(243, 237, 246)',
-    height: 60,
+    backgroundColor: THEME.colors.primaryContainer,
+    height: CUSTOM_THEME.headerHeight,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
