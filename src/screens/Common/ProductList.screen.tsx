@@ -9,7 +9,7 @@ import { ActivityIndicator } from 'react-native-paper';
 import { getCategoryById } from 'service';
 import { CategoryDto, ParamsType } from 'types';
 
-type Params = Pick<ParamsType, 'selectedMainCateId' | 'selectedSubCateId'>;
+type Params = Pick<ParamsType, 'mainCate' | 'subCate'>;
 
 type Props = {
   route: Route<'ProductList', Params>;
@@ -19,8 +19,8 @@ const ProductListScreen = ({ route: { params } }: Props) => {
   const [selectedSubCate, setSelectedSubCate] = useState<{ index: number; id: string }>(null);
 
   const { data: lv1Category, isLoading } = useQuery<CategoryDto, null, CategoryDto>({
-    queryKey: ['category'],
-    queryFn: () => getCategoryById(params.selectedMainCateId),
+    queryKey: [params.mainCate.id],
+    queryFn: () => getCategoryById(params.mainCate.id),
   });
 
   const onPressCateItem = (index: number, id: string) => {
@@ -32,11 +32,11 @@ const ProductListScreen = ({ route: { params } }: Props) => {
       return;
     }
 
-    const index = lv1Category.childCategories.findIndex(cate => cate.id === params.selectedSubCateId);
+    const index = lv1Category.childCategories.findIndex(cate => cate.id === params.subCate.id);
     const id = lv1Category.childCategories[index]?.id;
 
     setSelectedSubCate({ index, id });
-  }, [lv1Category, params.selectedSubCateId]);
+  }, [lv1Category, params.subCate.id]);
 
   if (isLoading) {
     return <ActivityIndicator animating />;

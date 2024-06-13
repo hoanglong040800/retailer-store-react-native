@@ -17,7 +17,7 @@ const CategoryDrawer = ({ callbackAfterPressCategory = () => null }: Props) => {
 
   // TODO use data from config
   const { data: categoriesList, isLoading } = useQuery<CategoryDto[], null, CategoryDto[]>({
-    queryKey: ['categories'],
+    queryKey: [],
     queryFn: getAllCategories,
   });
 
@@ -28,9 +28,19 @@ const CategoryDrawer = ({ callbackAfterPressCategory = () => null }: Props) => {
   };
 
   const onPressSubCategory = (index: number) => {
+    const mainCate = categoriesList[curMainIndex];
+    const subCate = mainCate?.childCategories?.[index];
+
     const params: ParamsType = {
-      selectedMainCateId: categoriesList[curMainIndex]?.id,
-      selectedSubCateId: categoriesList[curMainIndex]?.childCategories?.[index].id,
+      mainCate: {
+        id: mainCate?.id,
+        name: mainCate?.name,
+      },
+
+      subCate: {
+        id: subCate?.id,
+        name: subCate?.name,
+      },
     };
 
     navigate(Screen.ProductList, params);

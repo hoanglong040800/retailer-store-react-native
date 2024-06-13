@@ -16,9 +16,14 @@ export type TabScreenProps = {
   };
 };
 
+type CateParms = {
+  id: string;
+  name: string;
+};
+
 export type ParamsType = {
-  selectedMainCateId?: string;
-  selectedSubCateId?: string;
+  mainCate?: CateParms;
+  subCate?: CateParms;
   productId?: string;
 
   price?: number;
