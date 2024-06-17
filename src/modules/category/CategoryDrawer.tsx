@@ -48,7 +48,7 @@ const CategoryDrawer = ({ callbackAfterPressCategory = () => null }: Props) => {
       <View style={styles.rightCate}>
         <CategoryList
           list={categories[curMainIndex].childCategories}
-          direction="row"
+          direction="both"
           onPressItem={onPressSubCategory}
         />
       </View>

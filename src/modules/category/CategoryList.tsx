@@ -5,7 +5,7 @@ import CategoryItem from './CategoryItem';
 
 type Props = {
   list: CategoryDto[];
-  direction?: 'row' | 'column';
+  direction?: 'row' | 'column' | 'both';
   itemSize?: 'S' | 'M';
   selectedId?: string;
   style?: StyleProp<ViewStyle>;
@@ -20,8 +20,12 @@ const CategoryList = ({ list, direction = 'column', itemSize = 'M', selectedId, 
     return [sizeStyle, styles.scrollViewDefault, style];
   }, [direction, itemSize, style]);
 
+  const scrollContainerStyle = useMemo<StyleProp<ViewStyle>>(() => {
+    return direction === 'both' ? styles.scrollContainer_both : {};
+  }, [direction]);
+
   return (
-    <ScrollView horizontal={direction === 'row'} style={scrollViewStyle}>
+    <ScrollView horizontal={direction === 'row'} style={scrollViewStyle} contentContainerStyle={scrollContainerStyle}>
       {list?.map((cate, index) => (
         <CategoryItem
           key={cate.name}
@@ -39,6 +43,12 @@ const CategoryList = ({ list, direction = 'column', itemSize = 'M', selectedId, 
 const styles = StyleSheet.create({
   scrollViewDefault: {
     flex: 1,
+    padding: 8,
+  },
+
+  scrollContainer_both: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     padding: 8,
   },
 
