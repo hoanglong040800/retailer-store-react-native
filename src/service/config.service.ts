@@ -1,5 +1,6 @@
 import { axiosClient } from 'config';
+import { GetGlobalConfigDto } from 'types';
 
 const ROUTE = '/config';
 
-export const getGlobalConfig = () => axiosClient.get(ROUTE);
+export const getGlobalConfig = (): Promise<GetGlobalConfigDto> => axiosClient.get(ROUTE);

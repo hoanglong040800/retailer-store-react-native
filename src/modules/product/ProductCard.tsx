@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Card, Divider, Subheading, Text } from 'react-native-paper';
+import { formatCurrency } from 'utils';
 
 type Props = {
   name: string;
@@ -20,7 +21,7 @@ const ProductCard = ({ name, image, price, onPress = () => null }: Props) => {
 
         <Divider />
 
-        <Subheading style={styles.price}>{price}</Subheading>
+        <Subheading style={styles.price}>{formatCurrency(price)}</Subheading>
       </Card.Content>
     </Card>
   );

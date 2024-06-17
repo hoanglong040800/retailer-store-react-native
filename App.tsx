@@ -3,6 +3,7 @@ import '@expo/metro-runtime';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SnackbarProvider } from 'components';
+import { GlobalConfigProvider } from 'modules';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppNavigator } from 'screens';
 
@@ -12,11 +13,13 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <SnackbarProvider>
-          <NavigationContainer>
-            <AppNavigator />
-          </NavigationContainer>
-        </SnackbarProvider>
+        <GlobalConfigProvider>
+          <SnackbarProvider>
+            <NavigationContainer>
+              <AppNavigator />
+            </NavigationContainer>
+          </SnackbarProvider>
+        </GlobalConfigProvider>
       </QueryClientProvider>
     </SafeAreaProvider>
   );
