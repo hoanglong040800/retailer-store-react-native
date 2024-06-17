@@ -1,6 +1,5 @@
-import HomeScreen from './Home';
-import AppNavigator from './AppNavigator';
+import AppNavigator from './App/AppNavigator';
 
-export { HomeScreen, AppNavigator };
+export { AppNavigator };
 
-export * from './Todo';
+export * from './App';

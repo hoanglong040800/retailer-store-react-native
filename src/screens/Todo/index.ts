@@ -1,3 +1,3 @@
-import TodoScreen from './Todo';
+import TodoScreen from './Todo.screen';
 
 export { TodoScreen };
