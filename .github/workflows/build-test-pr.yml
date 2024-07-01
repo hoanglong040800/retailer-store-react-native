@@ -13,5 +13,5 @@ jobs:
         run: yarn predeploy
 
       - name: Test
-        run: yarn test --watchAll=false
+        run: yarn test:cov
 
